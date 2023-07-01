@@ -69,6 +69,7 @@ class Character {
       setInterval(() => {
         context.clearRect(0, 0, canvas.width, canvas.height);
         if (this.direction && this.isAnimating) {
+
           context.drawImage(
             this.spriteSheet,
             this.frameIndex * this.frameWidth,
