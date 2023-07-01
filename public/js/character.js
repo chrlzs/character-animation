@@ -65,15 +65,28 @@ class Character {
       document.body.appendChild(canvas);
   
       const context = canvas.getContext('2d');
-  
       setInterval(() => {
         context.clearRect(0, 0, canvas.width, canvas.height);
         if (this.direction && this.isAnimating) {
-
+          let frameY = 0; // Y coordinate for the sprite sheet frames
+          switch (this.direction) {
+            case 'up':
+              frameY = this.frameHeight * 3;
+              break;
+            case 'down':
+              frameY = this.frameHeight * 0;
+              break;
+            case 'left':
+              frameY = this.frameHeight * 2;
+              break;
+            case 'right':
+              frameY = this.frameHeight * 1;
+              break;
+          }
           context.drawImage(
             this.spriteSheet,
             this.frameIndex * this.frameWidth,
-            0,
+            frameY,
             this.frameWidth,
             this.frameHeight,
             0,
@@ -96,7 +109,6 @@ class Character {
           );
         }
       }, 1000 / 60);
-    
     }
   }
 
