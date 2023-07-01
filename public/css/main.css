@@ -1,0 +1,18 @@
+@import "colors.css";
+
+body {
+  background: var(--primary);
+  color: var(--secondary);
+  font-family: "JetBrains Mono", monospace;
+  display: grid;
+  align-items: center;
+  justify-content: center;
+
+  & h1 {
+    color: var(--salmon);
+
+    & #version {
+      color: var(--magenta);
+    }
+  }
+}

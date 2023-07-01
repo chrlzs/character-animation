@@ -1,0 +1,28 @@
+{
+  "name": "version",
+  "version": "1.0.0",
+  "description": "small project to serve as an artifact for testing CI/CD workflows",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chrlzs/version.git"
+  },
+  "keywords": [
+    "barebones",
+    "version testing",
+    "Node"
+  ],
+  "author": "Charles Schmidt",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/chrlzs/version/issues"
+  },
+  "homepage": "https://github.com/chrlzs/version#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
