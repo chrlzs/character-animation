@@ -7,7 +7,7 @@ class Character {
       this.spriteSheet.src = '../img/character.png';
       this.frameIndex = 0;
       this.animationFrames = 4;
-      this.frameWidth = 16;
+      this.frameWidth = 16; 
       this.frameHeight = 24;
   
       this.handleKeyDown = this.handleKeyDown.bind(this);
@@ -15,14 +15,6 @@ class Character {
   
       window.addEventListener('keydown', this.handleKeyDown);
       window.addEventListener('keyup', this.handleKeyUp);
-  
-      this.characterElement = document.createElement('div');
-      this.characterElement.style.position = 'absolute';
-      this.characterElement.style.width = this.frameWidth + 'px';
-      this.characterElement.style.height = this.frameHeight + 'px';
-      this.characterElement.style.backgroundImage = `url(${this.spriteSheet.src})`;
-  
-      document.body.appendChild(this.characterElement);
   
       this.animateCharacter();
     }
@@ -67,7 +59,14 @@ class Character {
         }
       }, 200);
   
+      const canvas = document.createElement('canvas');
+      canvas.width = this.frameWidth;
+      canvas.height = this.frameHeight;
+      document.body.appendChild(canvas);
+  
+      const context = canvas.getContext('2d');
       setInterval(() => {
+        context.clearRect(0, 0, canvas.width, canvas.height);
         if (this.direction && this.isAnimating) {
           let frameY = 0; // Y coordinate for the sprite sheet frames
           switch (this.direction) {
@@ -84,15 +83,33 @@ class Character {
               frameY = this.frameHeight * 1;
               break;
           }
-  
-          this.characterElement.style.backgroundPosition = `-${this.frameIndex * this.frameWidth}px -${frameY}px`;
+          context.drawImage(
+            this.spriteSheet,
+            this.frameIndex * this.frameWidth,
+            frameY,
+            this.frameWidth,
+            this.frameHeight,
+            0,
+            0,
+            this.frameWidth,
+            this.frameHeight
+          );
         } else {
           // Render the first frame of the character when not animating
-          this.characterElement.style.backgroundPosition = '0 0';
+          context.drawImage(
+            this.spriteSheet,
+            0,
+            0,
+            this.frameWidth,
+            this.frameHeight,
+            0,
+            0,
+            this.frameWidth,
+            this.frameHeight
+          );
         }
       }, 1000 / 60);
     }
   }
-  
-  export default Character;
-  
+
+export default Character;
